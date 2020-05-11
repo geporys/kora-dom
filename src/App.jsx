@@ -9,6 +9,7 @@ import Reason from './vue/Reason';
 import Questions from './vue/Questions';
 import Map from './vue/Map';
 import scrollToElement from 'scroll-to-element';
+//Привет, я Аня
 
 const App = () => {
   const [form, setFrom] = React.useState({ phone: '', email: '', comment: '' });
