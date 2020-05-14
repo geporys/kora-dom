@@ -9,18 +9,25 @@ import Reason from './vue/Reason';
 import Questions from './vue/Questions';
 import Map from './vue/Map';
 import scrollToElement from 'scroll-to-element';
-//Привет, я Аня
+import SnackbarConst from "./components/SnackbarConst";
 
 const App = () => {
   const [form, setFrom] = React.useState({ phone: '', email: '', comment: '' });
   const orderRef = React.useRef(null);
   const homeRef = React.useRef(null);
+  const [stateSnackbar, setStateSnackbar] = React.useState(null);
   const makeOrder = (newForm) => {
     setFrom({ ...form, ...newForm });
+    setStateSnackbar({text: "Пожалуйста заполните поле заказа", severity: "info"});
     if (orderRef.current) {
       scrollToElement(orderRef.current);
     }
   };
+
+    const handleClose = (props) =>{
+        setStateSnackbar(null);
+    };
+
   return (
     <>
       <Header />
@@ -32,6 +39,10 @@ const App = () => {
       <Questions />
       <Order ref={orderRef} form={form} />
       <Map />
+      <SnackbarConst
+          onClose={handleClose}
+          stateSnackbar={stateSnackbar}
+      />
     </>
   );
 };
