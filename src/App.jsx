@@ -18,7 +18,9 @@ const App = () => {
   const [stateSnackbar, setStateSnackbar] = React.useState(null);
   const makeOrder = (newForm) => {
     setFrom({ ...form, ...newForm });
-    setStateSnackbar({text: "Пожалуйста заполните поле заказа", severity: "info"});
+    setStateSnackbar({
+        text: "Пожалуйста, заполните поле заказа. Описание заказа было сформировано автоматически",
+        severity: "info"});
     if (orderRef.current) {
       scrollToElement(orderRef.current);
     }
@@ -39,10 +41,12 @@ const App = () => {
       <Questions />
       <Order ref={orderRef} form={form} />
       <Map />
-      <SnackbarConst
+        {stateSnackbar && <SnackbarConst
           onClose={handleClose}
-          stateSnackbar={stateSnackbar}
-      />
+          open={Boolean(stateSnackbar)}
+          text={stateSnackbar.text}
+          severity={stateSnackbar.severity}
+      />}
     </>
   );
 };

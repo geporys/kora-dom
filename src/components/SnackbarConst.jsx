@@ -1,14 +1,14 @@
 import React from "react";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
-const SnackbarConst = (props) => {
-    return(
-        props.stateSnackbar != null ?
-            (<Snackbar open={Boolean(props.stateSnackbar)} autoHideDuration={6000} onClose={props.onClose}>
-            <Alert onClose={props.onClose} severity={props.stateSnackbar.severity}>
-                {props.stateSnackbar.text}
+
+const SnackbarConst = ({onClose, open, text, severity, vertical='top', horizontal='center' }) => {
+    return (
+        <Snackbar open={open} autoHideDuration={12000} onClose={onClose}  anchorOrigin={{ vertical, horizontal }}>
+            <Alert onClose={onClose} severity={severity}>
+                {text}
             </Alert>
-        </Snackbar>) : null
+        </Snackbar>
     )
 }
 
