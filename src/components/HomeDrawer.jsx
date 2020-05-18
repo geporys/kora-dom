@@ -24,6 +24,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { ReactComponent as Circle } from '../assets/icons/circle.svg';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
+import {TimberHomeDrawer} from "./HomeDrawer/TimberHomeDrawer";
 
 const useStyle = makeStyles({
   content: {
@@ -321,39 +322,40 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
               </div>
             </div>
             <div className={classes.params}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Брус</FormLabel>
-                <RadioGroup aria-label="gender" name="gender1" value={state.size}>
-                  <FormControlLabel
-                    value=""
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value=""
-                          checked={state.size === ''}
-                          onChange={handleChange('size')}
-                        />{' '}
-                        <img className={classes.radioImg} src={ds145} />
-                      </div>
-                    }
-                    label="145x145"
-                  />
-                  <FormControlLabel
-                    value="LSize"
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value="LSize"
-                          checked={state.size === 'LSize'}
-                          onChange={handleChange('size')}
-                        />
-                        <img className={classes.radioImg} src={ds195} />
-                      </div>
-                    }
-                    label="145x195"
-                  />
-                </RadioGroup>
-              </FormControl>
+              <TimberHomeDrawer stateSize={state.size} change={handleChange('size')} />
+              {/*<FormControl component="fieldset">*/}
+              {/*  <FormLabel component="legend">Брус</FormLabel>*/}
+              {/*  <RadioGroup aria-label="gender" name="gender1" value={state.size}>*/}
+              {/*    <FormControlLabel*/}
+              {/*      value=""*/}
+              {/*      control={*/}
+              {/*        <div className={classes.radioWithPhoto}>*/}
+              {/*          <Radio*/}
+              {/*            value=""*/}
+              {/*            checked={state.size === ''}*/}
+              {/*            onChange={handleChange('size')}*/}
+              {/*          />{' '}*/}
+              {/*          <img className={classes.radioImg} src={ds145} />*/}
+              {/*        </div>*/}
+              {/*      }*/}
+              {/*      label="145x145"*/}
+              {/*    />*/}
+              {/*    <FormControlLabel*/}
+              {/*      value="LSize"*/}
+              {/*      control={*/}
+              {/*        <div className={classes.radioWithPhoto}>*/}
+              {/*          <Radio*/}
+              {/*            value="LSize"*/}
+              {/*            checked={state.size === 'LSize'}*/}
+              {/*            onChange={handleChange('size')}*/}
+              {/*          />*/}
+              {/*          <img className={classes.radioImg} src={ds195} />*/}
+              {/*        </div>*/}
+              {/*      }*/}
+              {/*      label="145x195"*/}
+              {/*    />*/}
+              {/*  </RadioGroup>*/}
+              {/*</FormControl>*/}
               <FormControl component="fieldset">
                 <div className={classes.formLabel}>
                   <FormLabel component="legend">Угол</FormLabel>
