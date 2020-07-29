@@ -1,17 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+import {Typography} from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { ArrowForward } from '@material-ui/icons';
+import {ArrowForward} from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
-import Radio from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import ds145 from '../assets/images/lamess/ds145.png';
 import ds195 from '../assets/images/lamess/ds195.png';
@@ -20,11 +18,9 @@ import hotCorn from '../assets/images/lamess/hotCorn.png';
 import nodePower from '../assets/images/lamess/nodePower.png';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { ReactComponent as Circle } from '../assets/icons/circle.svg';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
-import {TimberHomeDrawer} from "./HomeDrawer/TimberHomeDrawer";
+import {InfoFieldSetFromHomeDrawer, FieldSetHomeDrawer} from "./HomeDrawer/FieldSetHomeDrawer";
 
 const useStyle = makeStyles({
   content: {
@@ -322,95 +318,54 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
               </div>
             </div>
             <div className={classes.params}>
-              <TimberHomeDrawer stateSize={state.size} change={handleChange('size')} />
-              {/*<FormControl component="fieldset">*/}
-              {/*  <FormLabel component="legend">Брус</FormLabel>*/}
-              {/*  <RadioGroup aria-label="gender" name="gender1" value={state.size}>*/}
-              {/*    <FormControlLabel*/}
-              {/*      value=""*/}
-              {/*      control={*/}
-              {/*        <div className={classes.radioWithPhoto}>*/}
-              {/*          <Radio*/}
-              {/*            value=""*/}
-              {/*            checked={state.size === ''}*/}
-              {/*            onChange={handleChange('size')}*/}
-              {/*          />{' '}*/}
-              {/*          <img className={classes.radioImg} src={ds145} />*/}
-              {/*        </div>*/}
-              {/*      }*/}
-              {/*      label="145x145"*/}
-              {/*    />*/}
-              {/*    <FormControlLabel*/}
-              {/*      value="LSize"*/}
-              {/*      control={*/}
-              {/*        <div className={classes.radioWithPhoto}>*/}
-              {/*          <Radio*/}
-              {/*            value="LSize"*/}
-              {/*            checked={state.size === 'LSize'}*/}
-              {/*            onChange={handleChange('size')}*/}
-              {/*          />*/}
-              {/*          <img className={classes.radioImg} src={ds195} />*/}
-              {/*        </div>*/}
-              {/*      }*/}
-              {/*      label="145x195"*/}
-              {/*    />*/}
-              {/*  </RadioGroup>*/}
-              {/*</FormControl>*/}
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Брус</FormLabel>
+                <RadioGroup aria-label="gender" name="gender1" value={state.size}>
+              <FieldSetHomeDrawer label={"145x145"}
+                                  img={ds145}
+                                  initialState={initialState}
+                                  checked={state.size === ''}
+                                  value=""
+                                  onChange={handleChange('size')}
+                                  infoAboutDetails={false}
+                                  infoAboutImg={true}
+              />
+              <FieldSetHomeDrawer label={"145x195"}
+                                  img={ds195}
+                                  initialState={initialState}
+                                  checked={state.size === 'LSize'}
+                                  value="LSize"
+                                  onChange={handleChange('size')}
+                                  infoAboutDetails={false}
+                                  infoAboutImg={true}
+              />
+                </RadioGroup>
+              </FormControl>
               <FormControl component="fieldset">
                 <div className={classes.formLabel}>
                   <FormLabel component="legend">Угол</FormLabel>
                 </div>
                 <RadioGroup aria-label="gender" name="gender2" value={state.bowl}>
-                  <FormControlLabel
-                    value=""
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value=""
-                          checked={state.bowl === ''}
-                          onChange={handleChange('bowl')}
-                        />{' '}
-                        <img className={classes.radioImg} src={hotCorn} />
-                      </div>
-                    }
-                    label={
-                      <div className={classes.labelImg}>
-                        Теплый угол{' '}
-                        <Chip
-                          onClick={() => {
-                            openDialog(info.warmCorner);
-                          }}
-                          size="small"
-                          label="Подробней"
-                        />
-                      </div>
-                    }
+
+                  <FieldSetHomeDrawer img={hotCorn}
+                                      initialState={initialState}
+                                      checked={state.bowl === ''}
+                                      value=""
+                                      onChange={handleChange('bowl')}
+                                      infoTechnology={info.warmCorner}
+                                      name={'Теплый угол'}
+                                      infoAboutDetails={true}
+                                      infoAboutImg={true}
                   />
-                  <FormControlLabel
-                    value="Bowl"
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value="Bowl"
-                          checked={state.bowl === 'Bowl'}
-                          onChange={handleChange('bowl')}
-                        />
-                        <img className={classes.radioImg} src={bowl} />
-                      </div>
-                    }
-                    label={
-                      <div className={classes.labelImg}>
-                        {' '}
-                        В чашу{' '}
-                        <Chip
-                          onClick={() => {
-                            openDialog(info.bowl);
-                          }}
-                          size="small"
-                          label="Подробней"
-                        />
-                      </div>
-                    }
+                  <FieldSetHomeDrawer img={bowl}
+                                      initialState={initialState}
+                                      checked={state.bowl === 'Bowl'}
+                                      value="Bowl"
+                                      onChange={handleChange('bowl')}
+                                      infoTechnology={info.bowl}
+                                      name={'В чашу'}
+                                      infoAboutDetails={true}
+                                      infoAboutImg={true}
                   />
                 </RadioGroup>
               </FormControl>
@@ -423,37 +378,27 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                   onChange={handleChange('drying')}
                 >
                   <div className={classes.formLabel}>
-                    <FormControlLabel value="" control={<Radio />} label="Естественная влажность" />{' '}
-                    <Chip
-                      onClick={() => {
-                        openDialog(info.naturalHumidity);
-                      }}
-                      size="small"
-                      label="Подробней"
-                    />{' '}
+                    <FieldSetHomeDrawer infoTechnology={info.naturalHumidity}
+                                        value={''}
+                                        name={"Естественная влажность"}
+                                        infoAboutDetails={true}
+                                        infoAboutImg={false}
+                    />
                   </div>
                   <div className={classes.formLabel}>
-                    <FormControlLabel value="Drying" control={<Radio />} label="Камерная сушка" />{' '}
-                    <Chip
-                      onClick={() => {
-                        openDialog(info.chamberDrying);
-                      }}
-                      size="small"
-                      label="Подробней"
-                    />{' '}
+                    <FieldSetHomeDrawer infoTechnology={info.chamberDrying}
+                                        value={'Drying'}
+                                        name={"Камерная сушка"}
+                                        infoAboutDetails={true}
+                                        infoAboutImg={false}
+                    />
                   </div>
                 </RadioGroup>
               </FormControl>
             </div>
             <div className={classes.additionalParams}>
-              <FormControl className={classes.firstFormControl} component="fieldset">
-                <FormLabel component="legend">Кровля</FormLabel>
-                <Typography>Уточняется по телефону</Typography>
-              </FormControl>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Фундмаент</FormLabel>
-                <Typography>Уточняется по телефону</Typography>
-              </FormControl>
+              <InfoFieldSetFromHomeDrawer value={'Кровля'} classesTest={classes.firstFormControl}/>
+              <InfoFieldSetFromHomeDrawer value={'Фундамент'}/>
             </div>
             <List className={classes.list}>
               <FormLabel component="legend">Что входит в заказ?</FormLabel>
