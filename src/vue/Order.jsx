@@ -125,6 +125,7 @@ const Order = forwardRef(({ form }, ref) => {
     <Section ref={ref} id="order" title="СДЕЛАТЬ ЗАКАЗ">
       <div className={classes.box}>
         <form className={classes.form} onSubmit={handleSubmit}>
+          {/*<Alert className={classes.alert} severity="info">Информационное окно</Alert>*/}
           {isOk && (
             <Alert className={classes.alert}>Данные были отправлены! С вами свяжутся.</Alert>
           )}
