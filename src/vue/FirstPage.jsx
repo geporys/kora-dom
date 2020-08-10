@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import image from '../assets/images/home1/img11.png';
 import { ReactComponent as Trees } from '../assets/icons/trees.svg';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
@@ -12,7 +11,7 @@ const useSyles = makeStyles({
     width: '100%',
     height: '100vh',
     backgroundSize: 'cover',
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(https://i.imgur.com/E4lwUBR.png)`,
     zIndex: 0,
     boxShadow: 'inset 1px 93px 30px -14px rgba(0, 0, 0, 0.5)',
     backgroundPosition: 'bottom',

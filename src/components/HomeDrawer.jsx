@@ -13,15 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
-import ds145 from '../assets/images/lamess/ds145.png';
-import ds195 from '../assets/images/lamess/ds195.png';
-import bowl from '../assets/images/lamess/bowl.png';
-import hotCorn from '../assets/images/lamess/hotCorn.png';
-import nodePower from '../assets/images/lamess/nodePower.png';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { ReactComponent as Circle } from '../assets/icons/circle.svg';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
 
@@ -155,19 +148,19 @@ const info = {
     title: 'Пружинный «Узел сила»',
     text:
       'Современный крепежный элемент пружинный узел «Сила» внешне напоминает саморез длиной 16 – 28 см с пружиной в его верхней части. Изготавливается он из нержавеющей прочной стали и оцинкован полностью либо частично (помимо пружины). Это позволяет избежать образования ржавчины на пружинном узле, а в дальнейшем гниения и разрушения деревянного материала. Использовать пружинные узлы «Сила» можно для деревянных зданий, изготовленных из любого строительного материала. Данные элементы не только сохраняют геометрию конструкции, но и утепляют ее, препятствуя образованию межвенцовых щелей. Они скрепляют брус между собой, благодаря чему между венцами не образуются зазоры. Пружинный узел «Сила» прижимает брус между собой с силой 130 кгс. На венец нужно уложить около 4-х данных элементов, таким образом, на него будет действовать сила, составляющая 520 кгс. Эта нагрузка и не позволяет образовываться щелям и зазорам между венцами.',
-    img: nodePower,
+    img: 'https://i.imgur.com/a0j9HqF.jpg',
   },
   warmCorner: {
     title: 'Технология «Теплый угол»',
     text:
       'Тёплый угол – это специальный метод углового соединения в брусе посредством системы «шип-паз». Брус профилированный поставляется на стройплощадку в заготовке длиной6м и там уже опытными плотниками запиливается соединительный узел. Если правильно соблюдены параметры,  угол получается герметичным, и в нём не наблюдаются «мостика холода». Разумеется, дерево запиливается таким образом, чтобы все детали плотно прилегали друг к другу. К этому добавляется давление венцов, и в результате сооружение становится более устойчивым и надёжным. Основным преимуществом данного метода является экономичность, т.к. торцевые части бруса не выступают за стены и клиент не переплачивает за данную кубатуру.',
-    img: hotCorn,
+    img: 'https://i.imgur.com/d2raJbV.png',
   },
   bowl: {
     title: 'Технология «В чашу»',
     text:
       'Данный метод углового соединения в брусе считается самым надежным. Чаша и торцовка деталей выполняется на нашем производстве с использованием высокоточного оборудования лидирующих мировых производителей и поставляется на стройплощадку уже готовый домокомплект. Используемая нами чаша считается самой сложной по своей конфигурации, т.к. она выпилена со всех сторон и с двух сторон имеет смещение. Помимо того, что данное узловое соединение полностью исключает продувание угла, оно не требует дополнительной отделки снаружи.',
-    img: bowl,
+    img: 'https://i.imgur.com/PYmN5lS.jpg',
   },
   naturalHumidity: {
     title: 'Естественная влажность',
@@ -333,7 +326,11 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.size === ''}
                           onChange={handleChange('size')}
                         />{' '}
-                        <img className={classes.radioImg} src={ds145} />
+                        <img
+                          alt="1"
+                          className={classes.radioImg}
+                          src="https://i.imgur.com/qozRGBz.png"
+                        />
                       </div>
                     }
                     label="145x145"
@@ -347,7 +344,7 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.size === 'LSize'}
                           onChange={handleChange('size')}
                         />
-                        <img className={classes.radioImg} src={ds195} />
+                        <img className={classes.radioImg} src="https://i.imgur.com/9OOgsQS.png" />
                       </div>
                     }
                     label="145x195"
@@ -368,7 +365,7 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.bowl === ''}
                           onChange={handleChange('bowl')}
                         />{' '}
-                        <img className={classes.radioImg} src={hotCorn} />
+                        <img className={classes.radioImg} src={'https://i.imgur.com/d2raJbV.png'} />
                       </div>
                     }
                     label={
@@ -393,7 +390,7 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.bowl === 'Bowl'}
                           onChange={handleChange('bowl')}
                         />
-                        <img className={classes.radioImg} src={bowl} />
+                        <img className={classes.radioImg} src={'https://i.imgur.com/PYmN5lS.jpg'} />
                       </div>
                     }
                     label={

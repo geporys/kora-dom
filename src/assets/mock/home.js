@@ -1,61 +1,14 @@
-import img11 from '../images/home1/img11.png';
-import img12 from '../images/home1/img12.png';
-import img13 from '../images/home1/img13.png';
-import img14 from '../images/home1/img14.png';
-import img15 from '../images/home1/img15.png';
-import img16 from '../images/home1/img16.jpg';
-import img17 from '../images/home1/img17.jpg';
-
-import img21 from '../images/home2/img21.png';
-import img22 from '../images/home2/img22.png';
-import img23 from '../images/home2/img23.png';
-import img24 from '../images/home2/img24.png';
-import img25 from '../images/home2/img25.png';
-import img26 from '../images/home2/img26.jpg';
-import img27 from '../images/home2/img27.jpg';
-
-import img31 from '../images/home3/img31.jpg';
-import img32 from '../images/home3/img32.png';
-import img33 from '../images/home3/img33.png';
-import img34 from '../images/home3/img34.png';
-import img35 from '../images/home3/img35.png';
-import img36 from '../images/home3/img36.jpg';
-
-import img41 from '../images/home4/img41.jpg';
-import img42 from '../images/home4/img42.png';
-import img43 from '../images/home4/img43.png';
-import img44 from '../images/home4/img44.png';
-import img45 from '../images/home4/img45.png';
-import img46 from '../images/home4/img46.jpg';
-
-import img51 from '../images/home5/img51.jpg';
-import img52 from '../images/home5/img52.png';
-import img53 from '../images/home5/img53.png';
-import img54 from '../images/home5/img54.png';
-import img55 from '../images/home5/img55.png';
-import img56 from '../images/home5/img56.jpg';
-import img57 from '../images/home5/img57.jpg';
-
-import img61 from '../images/home6/img61.jpg';
-import img62 from '../images/home6/img62.png';
-import img63 from '../images/home6/img63.png';
-import img64 from '../images/home6/img64.png';
-import img65 from '../images/home6/img65.png';
-import img66 from '../images/home6/img66.jpg';
-import img67 from '../images/home6/img67.jpg';
-
-import img71 from '../images/home7/img71.jpg';
-import img72 from '../images/home7/img72.png';
-import img73 from '../images/home7/img73.png';
-import img74 from '../images/home7/img74.png';
-import img75 from '../images/home7/img75.png';
-import img76 from '../images/home7/img76.jpg';
-import img77 from '../images/home7/img77.jpg';
-
 export const homes = [
   {
     id: 2,
-    imgs: [img31, img32, img33, img34, img35, img36],
+    imgs: [
+      'https://i.imgur.com/97mY2CM.jpg',
+      'https://i.imgur.com/0zJ1eLM.png',
+      'https://i.imgur.com/yKgYfD5.png',
+      'https://i.imgur.com/Jhcukbl.png',
+      'https://i.imgur.com/ZxyGW6r.png',
+      'https://i.imgur.com/HfYqeGn.jpg',
+    ],
     title: 'БП-100',
     description: '100 м2, 1 этаж, 2 спальни',
     size: 100,
@@ -72,7 +25,15 @@ export const homes = [
   },
   {
     id: 1,
-    imgs: [img21, img22, img23, img24, img25, img26, img27],
+    imgs: [
+      'https://i.imgur.com/orudm1M.png',
+      'https://i.imgur.com/cr4iszl.png',
+      'https://i.imgur.com/YqDqEph.png',
+      'https://i.imgur.com/F8gxdPA.png',
+      'https://i.imgur.com/GXLa7kl.png',
+      'https://i.imgur.com/ChaYCe8.jpg',
+      'https://i.imgur.com/oyrNq0G.jpg',
+    ],
     title: 'БП-110',
     description: '110 м2, 2 этажа, 3 спальни',
     size: 110,
@@ -89,7 +50,15 @@ export const homes = [
   },
   {
     id: 6,
-    imgs: [img71, img72, img73, img74, img75, img76, img77],
+    imgs: [
+      'https://i.imgur.com/fFcAClo.jpg',
+      'https://i.imgur.com/0aG3XHU.png',
+      'https://i.imgur.com/w0YbDqu.png',
+      'https://i.imgur.com/LwXOSbZ.png',
+      'https://i.imgur.com/5EPLdWW.png',
+      'https://i.imgur.com/lSxwvsl.jpg',
+      'https://i.imgur.com/FwA6DEW.jpg',
+    ],
     title: 'БП-120',
     description: '120 м2, 2 этажа, 2 спальни',
     size: 120,
@@ -106,7 +75,14 @@ export const homes = [
   },
   {
     id: 3,
-    imgs: [img41, img42, img43, img44, img45, img46],
+    imgs: [
+      'https://i.imgur.com/y4cLs8i.jpg',
+      'https://i.imgur.com/m49LKZs.png',
+      'https://i.imgur.com/wbVgBQy.png',
+      'https://i.imgur.com/CDstlNW.png',
+      'https://i.imgur.com/8udPKbt.png',
+      'https://i.imgur.com/ITw1tcq.jpg',
+    ],
     title: 'БП-140',
     description: '140 м2, 2 этажа, 4 спальни',
     size: 140,
@@ -123,7 +99,15 @@ export const homes = [
   },
   {
     id: 0,
-    imgs: [img11, img12, img13, img14, img15, img16, img17],
+    imgs: [
+      'https://i.imgur.com/E4lwUBR.png',
+      'https://i.imgur.com/JVZNf7j.png',
+      'https://i.imgur.com/cVbmPTI.png',
+      'https://i.imgur.com/MKxrn2x.png',
+      'https://i.imgur.com/3sr9wr4.png',
+      'https://i.imgur.com/AnOCEWT.png',
+      'https://i.imgur.com/HJze89I.png',
+    ],
     title: 'БП-150',
     description: '150 м2, 2 этажа, 4 спальни',
     size: 150,
@@ -140,7 +124,15 @@ export const homes = [
   },
   {
     id: 4,
-    imgs: [img51, img52, img53, img54, img55, img56, img57],
+    imgs: [
+      'https://i.imgur.com/ozg95gI.jpg',
+      'https://i.imgur.com/aJpK17l.png',
+      'https://i.imgur.com/Qi2Q6wS.png',
+      'https://i.imgur.com/x3VyntU.png',
+      'https://i.imgur.com/nwCEkAU.png',
+      'https://i.imgur.com/iz7zATD.jpg',
+      'https://i.imgur.com/lmPICGE.jpg',
+    ],
     title: 'БП-197',
     description: '197 м2, 2 этажа, 5 спален',
     size: 197,
@@ -157,7 +149,15 @@ export const homes = [
   },
   {
     id: 5,
-    imgs: [img61, img62, img63, img64, img65, img66, img67],
+    imgs: [
+      'https://i.imgur.com/5GNQK3i.jpg',
+      'https://i.imgur.com/StDHACP.png',
+      'https://i.imgur.com/v1EdS1p.png',
+      'https://i.imgur.com/H2s8SRt.png',
+      'https://i.imgur.com/h9FZCFQ.png',
+      'https://i.imgur.com/GKNXr0e.jpg',
+      'https://i.imgur.com/ytpKtfl.jpg',
+    ],
     title: 'БП-200',
     description: '200 м2, 2 этажа, 4 спальни',
     size: 200,

@@ -7,14 +7,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { ReactComponent as Circle } from '../assets/icons/circle.svg';
 import List from '@material-ui/core/List';
 
-const useStyle = makeStyles({
-  content: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-  },
-});
-
 const items = [
   'Солидная репутация и опыт работы с 2000г',
   'Производство полного цикла от лесозаготовки до отгрузки домокомплекта',
@@ -24,8 +16,6 @@ const items = [
 ];
 
 const Reason = () => {
-  const classes = useStyle();
-
   return (
     <Section id="causes" title="ПРИЧИНЫ">
       <List>
