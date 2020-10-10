@@ -15,6 +15,7 @@ const Map = () => {
   return (
     <Section id="map" noPadding title="Контакты" color="gray">
       <iframe
+        title="yandex"
         className={classes.iframe}
         src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=63026981809"
         frameBorder="0"
