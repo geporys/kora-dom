@@ -24,7 +24,7 @@ const Homes = forwardRef(({ makeOrder }, ref) => {
   };
   return (
     <>
-      <Section ref={ref} id="homes" title="Наши дома" color="gray">
+      <Section ref={ref} id="homes" title="Наши дома" color="white">
         <div className={classes.content}>
           {homes.map(({ id, imgs, title, description, ...props }) => (
             <Home
