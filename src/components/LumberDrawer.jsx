@@ -1,80 +1,22 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
+import {makeStyles} from '@material-ui/core/styles';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { ArrowForward } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
-import Chip from '@material-ui/core/Chip';
-import Radio from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
 import Slider from "@material-ui/core/Slider";
+import {FieldSetHomeDrawer} from "./Drawers/FieldSetHomeDrawer";
+import Drawer from "./Drawers/Drawer";
 
 const useStyle = makeStyles({
-  content: {
-    maxWidth: ({ sizeL }) => (sizeL ? 800 : '100%'),
-    padding: '64px 24px 16px',
-  },
-  image: {
-    width: '100%',
-    height: ({ sizeM }) => (sizeM ? 500 : '70vw'),
-  },
-  title: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: 24,
-    position: ({ sizeL }) => !sizeL && 'fixed',
-    bottom: ({ sizeL }) => !sizeL && 0,
-    left: ({ sizeL }) => !sizeL && 0,
-    width: ({ sizeL }) => !sizeL && '100%',
-    backgroundColor: 'white',
-    padding: ({ sizeL }) => !sizeL && 24,
-    zIndex: 1000,
-    boxShadow: ({ sizeL }) =>
-      !sizeL &&
-      '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-  },
-  header: {
-    paddingBottom: 24,
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  paper: {
-    width: ({ sizeL }) => !sizeL && '100%',
-  },
-  price: {
-    height: 32,
-    cursor: 'pointer',
-    fontSize: 14,
-    fontWeight: 500,
-    lineHeight: 22,
-    color: 'rgb(255, 255, 255)',
-    backgroundColor: 'rgb(43, 45, 51)',
-    borderRadius: 16,
-    outline: 0,
-    marginRight: ({ sizeL }) => !sizeL && 40,
-    '&:hover': {
-      color: 'rgb(43, 45, 51)',
-    },
-  },
-  props: {
-    textAlign: 'center',
-    width: '100%',
-  },
   params: {
     marginTop: 36,
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-  },
-  label: {
-    color: 'rgba(0, 0, 0, 0.54)',
   },
   list: {
     marginTop: 24,
@@ -134,8 +76,8 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
 
   const handleClick = () => {
     makeOrder({
-      comment: `${lumber.title} / 
-      ${state.drying ? 'Камерная сушка' : 'Естественная влажность'}`,
+      comment: `${lumber.title} / ${state.drying ? 'Камерная сушка' : 'Естественная влажность'} / Объем: ${
+                  state.volume} м³;`,
     });
     setTimeout(() => {
       onClose();
@@ -143,9 +85,7 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
   };
 
   const [dialogInfo, setDialogInfo] = React.useState(null);
-  const openDialog = (info) => {
-    setDialogInfo(info);
-  };
+
   const closeDialog = () => {
     setDialogInfo(null);
   };
@@ -153,38 +93,23 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
 
   const handleChangeVolume = (event, newValue) => {
     setValue(newValue);
-    state.volume=newValue
+    setState({...state, volume: newValue})
   };
+
+
   return (
     <>
-      <Drawer
-        classes={{
-          paper: classes.paper,
-        }}
-        open={open}
-        onClose={onClose}
-        anchor="right"
+      <Drawer totalPrice={totalPrice}
+              handleClick={handleClick}
+              data={lumber}
+              makeOrder={makeOrder}
+              onClose={onClose}
+              open={open}
       >
-        {lumber && (
-          <div className={classes.content}>
-            <div className={classes.header}>
-              <IconButton onClick={onClose}>
-                <ArrowForward style={{ fontSize: 36 }} />
-              </IconButton>
-            </div>
-
-            <img alt="" className={classes.image}  src={lumber.img} />
-            <div className={classes.title}>
-              <Typography variant="h6">{lumber.title}</Typography>
-              <Chip
-                onClick={handleClick}
-                variant="outlined"
-                className={classes.price}
-                label={totalPrice + ' ₽'}
-              />
-            </div>
-            {lumber.priceWithDrying &&(
-                <div className={classes.params}>
+        {lumber &&(
+          <>
+            <div className={classes.params}>
+              {lumber.priceWithDrying &&(
                   <FormControl className={classes.lastFormControl} component="fieldset">
                     <FormLabel component="legend">Влажность</FormLabel>
                     <RadioGroup
@@ -194,29 +119,26 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
                         onChange={handleChange('drying')}
                     >
                       <div className={classes.formLabel}>
-                        <FormControlLabel value="" control={<Radio />} label="Естественная влажность" />{' '}
-                        <Chip
-                            onClick={() => {
-                              openDialog(info.naturalHumidity);
-                            }}
-                            size="small"
-                            label="Подробней"
-                        />{' '}
+                        <FieldSetHomeDrawer infoTechnology={info.naturalHumidity}
+                                            value={''}
+                                            name={"Естественная влажность"}
+                                            infoAboutDetails={true}
+                                            infoAboutImg={false}
+                        />
                       </div>
                       <div className={classes.formLabel}>
-                        <FormControlLabel value="Drying" control={<Radio />} label="Камерная сушка" />{' '}
-                        <Chip
-                            onClick={() => {
-                              openDialog(info.chamberDrying);
-                            }}
-                            size="small"
-                            label="Подробней"
-                        />{' '}
+                        <FieldSetHomeDrawer infoTechnology={info.chamberDrying}
+                                            value={'Drying'}
+                                            name={"Камерная сушка"}
+                                            infoAboutDetails={true}
+                                            infoAboutImg={false}
+                        />
                       </div>
                     </RadioGroup>
                   </FormControl>
-                </div>
-            )}
+              )}
+            </div>
+
 
             <FormControl className={classes.slider}>
               <FormLabel>Объем(м³)</FormLabel>
@@ -235,7 +157,7 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
             <List className={classes.list}>
               <FormLabel component="legend">Что входит в заказ?</FormLabel>
             </List>
-          </div>
+          </>
         )}
       </Drawer>
       {Boolean(dialogInfo) && (

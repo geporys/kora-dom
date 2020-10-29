@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {forwardRef, useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import Section from '../components/Section';
 import LumberDrawer from '../components/LumberDrawer';
 import {lumbers} from "../assets/mock/lumber";
@@ -25,11 +25,11 @@ const Lumbers = forwardRef(({ makeOrder }, ref) => {
     <>
       <Section ref={ref} id="lumbers" title="Наши пиломатериалы" color="gray">
         <div className={classes.content }>
-                {lumbers.map(({ id, img, title, ...props }) => (
+                {lumbers.map(({ id, imgs, title, ...props }) => (
                     <Lumber
-                        onClick={handleClick({ img, title, ...props })}
+                        onClick={handleClick({ imgs, title, ...props })}
                         key={id}
-                        image={img}
+                        image={imgs}
                         title={title}
                     />
                 ))}

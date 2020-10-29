@@ -1,17 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
+import {makeStyles} from '@material-ui/core/styles';
+import {Typography} from '@material-ui/core';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import ImageGallery from 'react-image-gallery';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { ArrowForward } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
-import Radio from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 // import ds145 from '../assets/images/lamess/ds145.png';
 // import ds195 from '../assets/images/lamess/ds195.png';
@@ -22,62 +16,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
+import {FieldSetHomeDrawer, InfoFieldSetFromHomeDrawer} from "./Drawers/FieldSetHomeDrawer";
+import Drawer from "./Drawers/Drawer";
 
 const useStyle = makeStyles({
-  content: {
-    maxWidth: ({ sizeL }) => (sizeL ? 800 : '100%'),
-    padding: '64px 24px 16px',
-  },
-  image: {
-    width: '100%',
-    height: ({ sizeM }) => (sizeM ? 500 : '70vw'),
-  },
-  thumbnail: {
-    width: ({ sizeL }) => (sizeL ? 90 : 70),
-    height: ({ sizeL }) => (sizeL ? 70 : 60),
-  },
-  title: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: 24,
-    position: ({ sizeL }) => !sizeL && 'fixed',
-    bottom: ({ sizeL }) => !sizeL && 0,
-    left: ({ sizeL }) => !sizeL && 0,
-    width: ({ sizeL }) => !sizeL && '100%',
-    backgroundColor: 'white',
-    padding: ({ sizeL }) => !sizeL && 24,
-    zIndex: 1000,
-    boxShadow: ({ sizeL }) =>
-      !sizeL &&
-      '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-  },
-  header: {
-    paddingBottom: 24,
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
   description: {
     paddingTop: 24,
     display: 'flex',
     justifyContent: 'space-between',
-  },
-  paper: {
-    width: ({ sizeL }) => !sizeL && '100%',
-  },
-  price: {
-    height: 32,
-    cursor: 'pointer',
-    fontSize: 14,
-    fontWeight: 500,
-    lineHeight: 22,
-    color: 'rgb(255, 255, 255)',
-    backgroundColor: 'rgb(43, 45, 51)',
-    borderRadius: 16,
-    outline: 0,
-    marginRight: ({ sizeL }) => !sizeL && 40,
-    '&:hover': {
-      color: 'rgb(43, 45, 51)',
-    },
   },
   props: {
     textAlign: 'center',
@@ -90,20 +36,6 @@ const useStyle = makeStyles({
     marginTop: 36,
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  radioWithPhoto: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingRight: 16,
-  },
-  radioImg: {
-    width: 160,
-    height: 160,
-  },
-  miniParams: {
-    display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   label: {
@@ -127,19 +59,10 @@ const useStyle = makeStyles({
   listItem: {
     paddingLeft: 0,
   },
-  link: {
-    textDecoration: 'none',
-  },
   formLabel: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  secondChip: {
-    marginLeft: 16,
-  },
-  labelImg: {
-    textAlign: 'center',
   },
 });
 
@@ -256,48 +179,27 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
   };
 
   const [dialogInfo, setDialogInfo] = React.useState(null);
+
   const openDialog = (info) => {
     setDialogInfo(info);
   };
+
   const closeDialog = () => {
     setDialogInfo(null);
   };
+
   return (
     <>
-      <Drawer
-        classes={{
-          paper: classes.paper,
-        }}
-        open={open}
-        onClose={onClose}
-        anchor="right"
+
+      <Drawer totalPrice={totalPrice}
+              handleClick={handleClick}
+              data={home}
+              makeOrder={makeOrder}
+              onClose={onClose}
+              open={open}
       >
-        {home && (
-          <div className={classes.content}>
-            <div className={classes.header}>
-              <IconButton onClick={onClose}>
-                <ArrowForward style={{ fontSize: 36 }} />
-              </IconButton>
-            </div>
-            <ImageGallery
-              showPlayButton={false}
-              showFullscreenButton={false}
-              items={home.imgs.map((img) => ({
-                original: img,
-                sizes: '100x100',
-                renderItem: () => <img alt="item" className={classes.image} src={img} />,
-                renderThumbInner: () => <img alt="thumb" className={classes.thumbnail} src={img} />,
-              }))}
-            />
-            <div className={classes.title}>
-              <Typography variant="h6">{home.title}</Typography>
-              <Chip
-                onClick={handleClick}
-                variant="outlined"
-                className={classes.price}
-                label={totalPrice + ' ₽'}
-              />
-            </div>
+        {home  && (
+          <>
             <div className={classes.description}>
               <div className={classes.props + ' ' + classes.firstProps}>
                 <Typography variant={sizeM ? 'h5' : 'subtitle2'}>{home.size + ' м2'}</Typography>
@@ -322,33 +224,23 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
               <FormControl component="fieldset">
                 <FormLabel component="legend">Брус</FormLabel>
                 <RadioGroup aria-label="gender" name="gender1" value={state.size}>
-                  <FormControlLabel
-                    value=""
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value=""
-                          checked={state.size === ''}
-                          onChange={handleChange('size')}
-                        />{' '}
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds145.png'} />
-                      </div>
-                    }
-                    label="145x145"
+                  <FieldSetHomeDrawer label={"145x145"}
+                                      img={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds145.png'}
+                                      initialState={initialState}
+                                      checked={state.size === ''}
+                                      value=""
+                                      onChange={handleChange('size')}
+                                      infoAboutDetails={false}
+                                      infoAboutImg={true}
                   />
-                  <FormControlLabel
-                    value="LSize"
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value="LSize"
-                          checked={state.size === 'LSize'}
-                          onChange={handleChange('size')}
-                        />
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds195.png'} />
-                      </div>
-                    }
-                    label="145x195"
+                  <FieldSetHomeDrawer label={"145x195"}
+                                      img={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds195.png'}
+                                      initialState={initialState}
+                                      checked={state.size === 'LSize'}
+                                      value="LSize"
+                                      onChange={handleChange('size')}
+                                      infoAboutDetails={false}
+                                      infoAboutImg={true}
                   />
                 </RadioGroup>
               </FormControl>
@@ -357,112 +249,72 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                   <FormLabel component="legend">Угол</FormLabel>
                 </div>
                 <RadioGroup aria-label="gender" name="gender2" value={state.bowl}>
-                  <FormControlLabel
-                    value=""
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value=""
-                          checked={state.bowl === ''}
-                          onChange={handleChange('bowl')}
-                        />{' '}
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/hotCorn.png'} />
-                      </div>
-                    }
-                    label={
-                      <div className={classes.labelImg}>
-                        Теплый угол{' '}
-                        <Chip
-                          onClick={() => {
-                            openDialog(info.warmCorner);
-                          }}
-                          size="small"
-                          label="Подробней"
-                        />
-                      </div>
-                    }
+                  <FieldSetHomeDrawer img={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/hotCorn.png'}
+                                      initialState={initialState}
+                                      checked={state.bowl === ''}
+                                      value=""
+                                      onChange={handleChange('bowl')}
+                                      infoTechnology={info.warmCorner}
+                                      name={'Теплый угол'}
+                                      infoAboutDetails={true}
+                                      infoAboutImg={true}
                   />
-                  <FormControlLabel
-                    value="Bowl"
-                    control={
-                      <div className={classes.radioWithPhoto}>
-                        <Radio
-                          value="Bowl"
-                          checked={state.bowl === 'Bowl'}
-                          onChange={handleChange('bowl')}
-                        />
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/bowl.png'} />
-                      </div>
-                    }
-                    label={
-                      <div className={classes.labelImg}>
-                        {' '}
-                        В чашу{' '}
-                        <Chip
-                          onClick={() => {
-                            openDialog(info.bowl);
-                          }}
-                          size="small"
-                          label="Подробней"
-                        />
-                      </div>
-                    }
+                  <FieldSetHomeDrawer img={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/bowl.png'}
+                                      initialState={initialState}
+                                      checked={state.bowl === 'Bowl'}
+                                      value="Bowl"
+                                      onChange={handleChange('bowl')}
+                                      infoTechnology={info.bowl}
+                                      name={'В чашу'}
+                                      infoAboutDetails={true}
+                                      infoAboutImg={true}
                   />
                 </RadioGroup>
               </FormControl>
               <FormControl className={classes.lastFormControl} component="fieldset">
                 <FormLabel component="legend">Влажность</FormLabel>
                 <RadioGroup
-                  aria-label="gender"
-                  name="gender3"
-                  value={state.drying}
-                  onChange={handleChange('drying')}
+                    aria-label="gender"
+                    name="gender3"
+                    value={state.drying}
+                    onChange={handleChange('drying')}
                 >
                   <div className={classes.formLabel}>
-                    <FormControlLabel value="" control={<Radio />} label="Естественная влажность" />{' '}
-                    <Chip
-                      onClick={() => {
-                        openDialog(info.naturalHumidity);
-                      }}
-                      size="small"
-                      label="Подробней"
-                    />{' '}
+                    <FieldSetHomeDrawer infoTechnology={info.naturalHumidity}
+                                        value={''}
+                                        name={"Естественная влажность"}
+                                        infoAboutDetails={true}
+                                        infoAboutImg={false}
+                    />
                   </div>
                   <div className={classes.formLabel}>
-                    <FormControlLabel value="Drying" control={<Radio />} label="Камерная сушка" />{' '}
-                    <Chip
-                      onClick={() => {
-                        openDialog(info.chamberDrying);
-                      }}
-                      size="small"
-                      label="Подробней"
-                    />{' '}
+                    <FieldSetHomeDrawer infoTechnology={info.chamberDrying}
+                                        value={'Drying'}
+                                        name={"Камерная сушка"}
+                                        infoAboutDetails={true}
+                                        infoAboutImg={false}
+                    />
                   </div>
                 </RadioGroup>
               </FormControl>
             </div>
             <div className={classes.additionalParams}>
-              <FormControl className={classes.firstFormControl} component="fieldset">
-                <FormLabel component="legend">Кровля</FormLabel>
-                <Typography>Уточняется по телефону</Typography>
-              </FormControl>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Фундмаент</FormLabel>
-                <Typography>Уточняется по телефону</Typography>
-              </FormControl>
+              <InfoFieldSetFromHomeDrawer value={'Кровля'} classesTest={classes.firstFormControl}/>
+              <InfoFieldSetFromHomeDrawer value={'Фундамент'}/>
             </div>
             <List className={classes.list}>
               <FormLabel component="legend">Что входит в заказ?</FormLabel>
               {items({ size: state.size, openDialog }).map((item, index) => (
-                <ListItem className={classes.listItem} key={index} button>
-                  <ListItemText primary={item.text} />
-                  {item.content}
-                </ListItem>
+                  <ListItem className={classes.listItem} key={index} button>
+                    <ListItemText primary={item.text} />
+                    {item.content}
+                  </ListItem>
               ))}
             </List>
-          </div>
+          </>
         )}
       </Drawer>
+
       {Boolean(dialogInfo) && (
         <MoreDetailesDialog
           open={Boolean(dialogInfo)}

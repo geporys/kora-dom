@@ -16,6 +16,7 @@ const App = () => {
   const [form, setFrom] = React.useState({ phone: '', email: '', comment: '' });
   const orderRef = React.useRef(null);
   const homeRef = React.useRef(null);
+  const lumberRef = React.useRef(null);
   const [stateSnackbar, setStateSnackbar] = React.useState(null);
   const makeOrder = (newForm) => {
     setFrom({ ...form, ...newForm });
@@ -36,7 +37,7 @@ const App = () => {
       <Header />
       <FirstPage homeRef={homeRef} makeOrder={makeOrder} />
       <Homes ref={homeRef} makeOrder={makeOrder} />
-      <Lumbers/>
+      <Lumbers ref={lumberRef} makeOrder={makeOrder} />
       <About />
       <Advantage />
       <Reason />

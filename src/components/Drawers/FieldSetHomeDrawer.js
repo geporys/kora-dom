@@ -25,7 +25,7 @@ const useStyle = makeStyles({
         textAlign: 'center',
     },
     firstFormControl: {
-        marginBottom: 10,
+        marginBottom: 16,
     }
 });
 
