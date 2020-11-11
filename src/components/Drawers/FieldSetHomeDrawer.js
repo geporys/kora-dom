@@ -29,22 +29,8 @@ const useStyle = makeStyles({
     }
 });
 
-const info = {
-    warmCorner: {
-        title: 'Технология «Теплый угол»',
-        text:
-            'Тёплый угол – это специальный метод углового соединения в брусе посредством системы «шип-паз». Брус профилированный поставляется на стройплощадку в заготовке длиной6м и там уже опытными плотниками запиливается соединительный узел. Если правильно соблюдены параметры,  угол получается герметичным, и в нём не наблюдаются «мостика холода». Разумеется, дерево запиливается таким образом, чтобы все детали плотно прилегали друг к другу. К этому добавляется давление венцов, и в результате сооружение становится более устойчивым и надёжным. Основным преимуществом данного метода является экономичность, т.к. торцевые части бруса не выступают за стены и клиент не переплачивает за данную кубатуру.',
-        img: hotCorn,
-    },
-    bowl: {
-        title: 'Технология «В чашу»',
-        text:
-            'Данный метод углового соединения в брусе считается самым надежным. Чаша и торцовка деталей выполняется на нашем производстве с использованием высокоточного оборудования лидирующих мировых производителей и поставляется на стройплощадку уже готовый домокомплект. Используемая нами чаша считается самой сложной по своей конфигурации, т.к. она выпилена со всех сторон и с двух сторон имеет смещение. Помимо того, что данное узловое соединение полностью исключает продувание угла, оно не требует дополнительной отделки снаружи.',
-        img: bowl,
-    }
-};
 
-export const FieldSetHomeDrawer = (props) => {
+export const FieldSetHomeDrawer = ({value, infoAboutImg, checked, onChange, img, infoAboutDetails, label, name, infoTechnology}) => {
 
     const sizeL = useMediaQuery('(min-width:800px)');
     const sizeM = useMediaQuery('(min-width:600px)');
@@ -61,28 +47,28 @@ export const FieldSetHomeDrawer = (props) => {
     return (
         <>
             <FormControlLabel
-                value={props.value}
+                value={value}
                 control={
-                    !props.infoAboutImg ?
+                    !infoAboutImg ?
                         <Radio/> :
                         <div className={classes.radioWithPhoto}>
                             <Radio
-                                value={props.value}
-                                checked={props.checked}
-                                onChange={props.onChange}
+                                value={value}
+                                checked={checked}
+                                onChange={onChange}
                             />{' '}
-                            <img className={classes.radioImg} src={props.img}/>
+                            <img className={classes.radioImg} src={img}/>
                         </div>
                 }
                 label={
-                    !props.infoAboutDetails ?
-                        props.label :
+                    !infoAboutDetails ?
+                        label :
                         (<div className={classes.labelImg}>
                             {' '}
-                            {props.name}{' '}
+                            {name}{' '}
                             <Chip
                                 onClick={() => {
-                                    openDialog(props.infoTechnology)
+                                    openDialog(infoTechnology)
                                 }}
                                 size="small"
                                 label="Подробней"
@@ -103,11 +89,3 @@ export const FieldSetHomeDrawer = (props) => {
     );
 };
 
-export const InfoFieldSetFromHomeDrawer = (props) => {
-    return(
-        <FormControl className={props.classesTest} component="fieldset">
-            <FormLabel component="legend">{props.value}</FormLabel>
-            <Typography>Уточняется по телефону</Typography>
-        </FormControl>
-    )
-}

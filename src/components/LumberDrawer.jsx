@@ -5,11 +5,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
-import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
 import Slider from "@material-ui/core/Slider";
 import {FieldSetHomeDrawer} from "./Drawers/FieldSetHomeDrawer";
-import Drawer from "./Drawers/Drawer";
+import Drawer from "./Drawer";
 
 const useStyle = makeStyles({
   params: {
@@ -17,9 +16,6 @@ const useStyle = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-  },
-  list: {
-    marginTop: 24,
   },
   lastFormControl: {
     marginTop: 16,
@@ -102,7 +98,6 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
       <Drawer totalPrice={totalPrice}
               handleClick={handleClick}
               data={lumber}
-              makeOrder={makeOrder}
               onClose={onClose}
               open={open}
       >
@@ -154,9 +149,6 @@ const LumberDrawer = ({ lumber, open, onClose, makeOrder }) => {
                   max={200}
               />
             </FormControl>
-            <List className={classes.list}>
-              <FormLabel component="legend">Что входит в заказ?</FormLabel>
-            </List>
           </>
         )}
       </Drawer>

@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {ArrowForward} from "@material-ui/icons";
 import ImageGallery from "react-image-gallery";
 import {Typography} from "@material-ui/core";
-import MoreDetailesDialog from "../MoreDetailesDialog";
+import MoreDetailesDialog from "./MoreDetailesDialog";
 
 const useStyle = makeStyles({
     content: {
@@ -91,8 +91,7 @@ const Drawer = ({open, onClose, makeOrder, totalPrice, handleClick, data, childr
                                 <ArrowForward style={{fontSize: 36}}/>
                             </IconButton>
                         </div>
-                        {(data.imgs.length === 1) && <img alt="" className={classes.image} src={data.imgs}/>}
-                        {(data.imgs.length > 1) &&
+                        {(data.imgs.length === 1) ? <img alt="" className={classes.image} src={data.imgs}/>:
                         <ImageGallery
                             showPlayButton={false}
                             showFullscreenButton={false}
@@ -102,8 +101,7 @@ const Drawer = ({open, onClose, makeOrder, totalPrice, handleClick, data, childr
                                 renderItem: () => <img alt="item" className={classes.image} src={img}/>,
                                 renderThumbInner: () => <img alt="thumb" className={classes.thumbnail} src={img}/>,
                             }))}
-                        />
-                        }
+                        />}
                         <div className={classes.title}>
                             <>
                                 <Typography variant="h6">{data.title}</Typography>
@@ -119,15 +117,6 @@ const Drawer = ({open, onClose, makeOrder, totalPrice, handleClick, data, childr
                     </div>
                 )}
             </MUDrawer>
-            {Boolean(dialogInfo) && (
-                <MoreDetailesDialog
-                    open={Boolean(dialogInfo)}
-                    onClose={closeDialog}
-                    title={dialogInfo.title}
-                    text={dialogInfo.text}
-                    img={dialogInfo.img}
-                />
-            )}
         </>
     );
 };

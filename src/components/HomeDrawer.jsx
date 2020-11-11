@@ -16,8 +16,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import MoreDetailesDialog from './MoreDetailesDialog';
-import {FieldSetHomeDrawer, InfoFieldSetFromHomeDrawer} from "./Drawers/FieldSetHomeDrawer";
-import Drawer from "./Drawers/Drawer";
+import {FieldSetHomeDrawer} from "./Drawers/FieldSetHomeDrawer";
+import Drawer from "./Drawer";
+import {InfoFieldSetFromHomeDrawer} from "./Drawers/InfoFieldSetFromHomeDrawer";
 
 const useStyle = makeStyles({
   description: {
@@ -299,7 +300,7 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
               </FormControl>
             </div>
             <div className={classes.additionalParams}>
-              <InfoFieldSetFromHomeDrawer value={'Кровля'} classesTest={classes.firstFormControl}/>
+              <InfoFieldSetFromHomeDrawer value={'Кровля'} classesName={classes.firstFormControl}/>
               <InfoFieldSetFromHomeDrawer value={'Фундамент'}/>
             </div>
             <List className={classes.list}>
