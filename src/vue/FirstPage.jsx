@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ReactComponent as Trees } from '../assets/icons/trees.svg';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import scrollToElement from 'scroll-to-element';
 
 const useSyles = makeStyles({
   root: {
@@ -41,21 +40,14 @@ const useSyles = makeStyles({
   },
 });
 
-const FirstPage = ({ makeOrder, homeRef }) => {
+const FirstPage = ({ makeOrder }) => {
   const sizeL = useMediaQuery('(min-width:1000px)');
   const sizeM = useMediaQuery('(min-width: 600px)');
 
-  const [first, setFirst] = useState(false);
-  const handleScroll = (e) => {
-    if (homeRef.current) {
-      scrollToElement(homeRef.current);
-      setFirst(true);
-    }
-  };
   const classes = useSyles({ sizeM });
 
   return (
-    <div onWheel={first ? null : handleScroll} className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.content}>
         <div>
           <Typography classes={{ h1: classes.title }} variant="h1">

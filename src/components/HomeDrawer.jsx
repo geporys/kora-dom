@@ -30,9 +30,11 @@ const useStyle = makeStyles({
   },
   image: {
     width: '100%',
+    objectFit: 'cover',
     height: ({ sizeM }) => (sizeM ? 500 : '70vw'),
   },
   thumbnail: {
+    objectFit: 'cover',
     width: ({ sizeL }) => (sizeL ? 90 : 70),
     height: ({ sizeL }) => (sizeL ? 70 : 60),
   },
@@ -331,7 +333,13 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.size === ''}
                           onChange={handleChange('size')}
                         />{' '}
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds145.png'} />
+                        <img
+                          alt=""
+                          className={classes.radioImg}
+                          src={
+                            'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds145.png'
+                          }
+                        />
                       </div>
                     }
                     label="145x145"
@@ -345,7 +353,13 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.size === 'LSize'}
                           onChange={handleChange('size')}
                         />
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds195.png'} />
+                        <img
+                          alt=""
+                          className={classes.radioImg}
+                          src={
+                            'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/ds195.png'
+                          }
+                        />
                       </div>
                     }
                     label="145x195"
@@ -366,7 +380,13 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.bowl === ''}
                           onChange={handleChange('bowl')}
                         />{' '}
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/hotCorn.png'} />
+                        <img
+                          alt=""
+                          className={classes.radioImg}
+                          src={
+                            'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/hotCorn.png'
+                          }
+                        />
                       </div>
                     }
                     label={
@@ -391,7 +411,13 @@ const HomeDrawer = ({ home, open, onClose, makeOrder }) => {
                           checked={state.bowl === 'Bowl'}
                           onChange={handleChange('bowl')}
                         />
-                        <img alt="" className={classes.radioImg} src={'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/bowl.png'} />
+                        <img
+                          alt=""
+                          className={classes.radioImg}
+                          src={
+                            'https://storage.yandexcloud.net/for-projects/kora-dom/lamess/bowl.png'
+                          }
+                        />
                       </div>
                     }
                     label={
