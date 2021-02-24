@@ -36,6 +36,7 @@ const useStyle = makeStyles({
     backgroundColor: 'white',
     boxShadow: 'none',
     border: 'none',
+    disabled: true,
   },
   alert: {
     marginBottom: 16,
@@ -47,7 +48,7 @@ const Order = forwardRef(({ form }, ref) => {
   const sizeM = useMediaQuery('(min-width:700px)');
   const classes = useStyle({ sizeM });
 
-  const initialState = { phone: '', email: '', comment: '' };
+  const initialState = { phone: '', email: '', comment: '', error: false};
   const [state, setState] = useState(initialState);
   const [files, setFiles] = useState([]);
   const [isOk, setIsOk] = useState(false);
@@ -61,6 +62,14 @@ const Order = forwardRef(({ form }, ref) => {
     const { value } = e.target;
     setState({ ...state, [field]: value });
   };
+
+  const exampleClick=()=>()=>{
+    if(state.email.length === 0 && state.phone.length === 0){
+      setState({ ...state, error: true });
+    } else {
+      setState({ ...state, error: false });
+    }
+  }
 
   const handleUploadFiles = (e) => {
     var uploadedfiles = e.target.files || e.dataTransfer.files;
@@ -135,7 +144,12 @@ const Order = forwardRef(({ form }, ref) => {
               ger266.u@yandex.ru.
             </Alert>
           )}
+          {state.error === true && Object.keys(state.phone).length === 0 && Object.keys(state.email).length === 0 && (
+                <Alert severity="warning">Пожалуйста, введите свою почту или телефон для отправки</Alert>
+          )}
+
           <TextField
+            error = {state.error && Object.keys(state.phone).length === 0 && Object.keys(state.email).length === 0}
             fullWidth
             variant="outlined"
             label="Ваш номер телефона"
@@ -144,6 +158,7 @@ const Order = forwardRef(({ form }, ref) => {
             value={state.phone}
           />
           <TextField
+            error = {state.error && Object.keys(state.phone).length === 0 && Object.keys(state.email).length === 0}
             fullWidth
             variant="outlined"
             label="Ваш e-mail"
@@ -186,8 +201,14 @@ const Order = forwardRef(({ form }, ref) => {
             <label htmlFor="file-elem">
               <Chip onClick={() => {}} variant="outlined" label="Добавить файл" />
             </label>
-            <button className={classes.submitButton} type="submit">
-              <Chip type="submit" onClick={() => {}} color="primary" label="Отправить" />
+            <button disabled className={classes.submitButton} type="submit">
+              <Chip
+                  // disabled={Object.keys(state.phone).length === 0 && Object.keys(state.email).length === 0}
+                  type="submit"
+                  onClick={exampleClick()}
+                  color="primary"
+                  label="Отправить"
+              />
             </button>
           </div>
         </form>
