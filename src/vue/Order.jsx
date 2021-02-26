@@ -90,6 +90,9 @@ const Order = forwardRef(({ form }, ref) => {
     e.preventDefault();
 
     if (!phoneAndEmailAreEmpty) {
+
+      setState({ ...state, error: false });
+
       const formdata = new FormData();
 
       for (const name in state) {
