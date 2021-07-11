@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, {useState, useEffect, forwardRef, useMemo} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Section from '../components/Section';
 import Chip from '@material-ui/core/Chip';
@@ -47,7 +47,7 @@ const Order = forwardRef(({ form }, ref) => {
   const sizeM = useMediaQuery('(min-width:700px)');
   const classes = useStyle({ sizeM });
 
-  const initialState = { phone: '', email: '', comment: '' };
+  const initialState = { phone: '', email: '', comment: '', error: false};
   const [state, setState] = useState(initialState);
   const [files, setFiles] = useState([]);
   const [isOk, setIsOk] = useState(false);
@@ -89,37 +89,46 @@ const Order = forwardRef(({ form }, ref) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formdata = new FormData();
+    if (!phoneAndEmailAreEmpty) {
 
-    for (const name in state) {
-      formdata.append(name, state[name]);
-    }
+      setState({ ...state, error: false });
 
-    files.forEach(({ file }) => {
-      formdata.append('files', file);
-    });
+      const formdata = new FormData();
 
-    axios
-      .post('https://formfor.site/send/vl31zJskZJLNnIqn5rRe6Aoxl02MhL', formdata, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Credentials': true,
-        },
-      })
-      .then((response) => {})
-      .catch(({ response }) => {
-        console.log(response);
-        // eslint-disable-next-line no-console
-        if (response && response.status === 400) {
-          setIsOk(false);
-          setIsError(true);
-          return;
-        }
-        remove();
-        setIsError(false);
-        setIsOk(true);
+      for (const name in state) {
+        formdata.append(name, state[name]);
+      }
+
+      files.forEach(({ file }) => {
+        formdata.append('files', file);
       });
+
+      axios
+          .post('https://formfor.site/send/vl31zJskZJLNnIqn5rRe6Aoxl02MhL', formdata, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Access-Control-Allow-Credentials': true,
+            },
+          })
+          .then((response) => {})
+          .catch(({ response }) => {
+            console.log(response);
+            // eslint-disable-next-line no-console
+            if (response && response.status === 400) {
+              setIsOk(false);
+              setIsError(true);
+              return;
+            }
+            remove();
+            setIsError(false);
+            setIsOk(true);
+          });
+    } else {
+      setState({ ...state, error: true });
+    }
   };
+
+  const phoneAndEmailAreEmpty = useMemo(() => Boolean(!state.phone && !state.email), [state.phone, state.email])
 
   return (
     <Section ref={ref} id="order" title="СДЕЛАТЬ ЗАКАЗ">
@@ -135,7 +144,12 @@ const Order = forwardRef(({ form }, ref) => {
               ger266.u@yandex.ru.
             </Alert>
           )}
+          {state.error && phoneAndEmailAreEmpty && (
+                <Alert severity="warning">Данные не были отправлены! Пожалуйста, введите свою почту или телефон для отправки</Alert>
+          )}
+
           <TextField
+            error = {state.error && phoneAndEmailAreEmpty}
             fullWidth
             variant="outlined"
             label="Ваш номер телефона"
@@ -144,6 +158,7 @@ const Order = forwardRef(({ form }, ref) => {
             value={state.phone}
           />
           <TextField
+            error = {state.error && phoneAndEmailAreEmpty}
             fullWidth
             variant="outlined"
             label="Ваш e-mail"
@@ -186,8 +201,14 @@ const Order = forwardRef(({ form }, ref) => {
             <label htmlFor="file-elem">
               <Chip onClick={() => {}} variant="outlined" label="Добавить файл" />
             </label>
-            <button className={classes.submitButton} type="submit">
-              <Chip type="submit" onClick={() => {}} color="primary" label="Отправить" />
+            <button
+                className={classes.submitButton} type="submit">
+              <Chip
+                  type="submit"
+                  onClick={() => {}}
+                  color="primary"
+                  label="Отправить"
+              />
             </button>
           </div>
         </form>
