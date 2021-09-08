@@ -76,6 +76,7 @@ const useStyle = makeStyles({
     backgroundColor: 'rgb(43, 45, 51)',
     borderRadius: 16,
     outline: 0,
+    overflow: 'hidden',
     marginRight: ({ sizeL }) => !sizeL && 40,
     '&:hover': {
       color: 'rgb(43, 45, 51)',
