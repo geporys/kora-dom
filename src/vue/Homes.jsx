@@ -11,6 +11,9 @@ const useStyle = makeStyles({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
+  emptyHome: {
+    width: 500,
+  },
 });
 
 const Homes = forwardRef(({ makeOrder }, ref) => {
@@ -26,14 +29,16 @@ const Homes = forwardRef(({ makeOrder }, ref) => {
   const [homes, setHomes] = useState([]);
 
   const getHomes = async () => {
-    const response = await axios.get('https://storage.yandexcloud.net/for-projects/kora-dom/home.json')
+    const response = await axios.get(
+      'https://storage.yandexcloud.net/for-projects/kora-dom/home.json'
+    );
 
-    setHomes(response.data)
-  }
+    setHomes(response.data);
+  };
 
   useEffect(() => {
     getHomes();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -48,6 +53,7 @@ const Homes = forwardRef(({ makeOrder }, ref) => {
               description={description}
             />
           ))}
+          <div className={classes.emptyHome} />
         </div>
       </Section>
       <HomeDrawer
