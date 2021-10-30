@@ -100,24 +100,20 @@ const Order = forwardRef(({ form }, ref) => {
     });
 
     axios
-      .post('https://formfor.site/send/vl31zJskZJLNnIqn5rRe6Aoxl02MhL', formdata, {
+      .post('https://formspree.io/f/xnqlkqyl', formdata, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Credentials': true,
+          Accept: 'application/json',
         },
       })
-      .then((response) => {})
-      .catch(({ response }) => {
-        console.log(response);
-        // eslint-disable-next-line no-console
-        if (response && response.status === 400) {
-          setIsOk(false);
-          setIsError(true);
-          return;
-        }
+      .then((response) => {
         remove();
         setIsError(false);
         setIsOk(true);
+      })
+      .catch(({ response }) => {
+        setIsOk(false);
+        setIsError(true);
+        return;
       });
   };
 
@@ -131,8 +127,8 @@ const Order = forwardRef(({ form }, ref) => {
           )}
           {isError && (
             <Alert className={classes.alert} severity="error">
-              Ошибка! Возможно стоит добавить меньше файлов или написать на почту
-              ger266.u@yandex.ru.
+              Ошибка! Возможно стоит добавить меньше файлов или позвонить по номеру +7 (906)
+              666-37-00
             </Alert>
           )}
           <TextField
