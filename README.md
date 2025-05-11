@@ -15,7 +15,7 @@ This project requires **Node.js v12.x** and **npm v6.x** to ensure compatibility
    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
    ```
 
-2. **Load **\`\`** into your current shell session** (for zsh users):
+2. **Load `nvm` into your current shell session** (for zsh users):
 
    ```bash
    export NVM_DIR="$HOME/.nvm"
@@ -66,6 +66,49 @@ npm run build
 ```
 
 The build output will be in the `build/` folder.
+
+## ☁️ Uploading Build to S3
+
+To upload the contents of the `build/` folder to an S3-compatible bucket, use the included Python script:
+
+### Prerequisites
+
+* Python 3
+* `boto3` installed:
+
+  ```bash
+  pip install boto3
+  ```
+
+### Script Location
+
+The script should be created as `upload_build_to_s3.py` in your project directory.
+
+### Script Usage
+
+The script is preconfigured to:
+
+* Use hardcoded AWS credentials and endpoint
+* Upload the `../folder/build` directory
+* Preserve folder structure
+
+You can modify the following variables in the script:
+
+```python
+AWS_ACCESS_KEY_ID = 'your-access-key-id'
+AWS_SECRET_ACCESS_KEY = 'your-secret-access-key'
+ENDPOINT_URL = 'https://your-endpoint.com'
+BUCKET_NAME = 'your-s3-bucket-name'
+LOCAL_DIR = '../folder/build'
+```
+
+### Running the Script
+
+```bash
+python upload_build_to_s3.py
+```
+
+Make sure the folder path and credentials are valid before running the script.
 
 ---
 
