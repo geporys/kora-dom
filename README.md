@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Kora DOM 2.0
 
-## Available Scripts
+A React-based application using Material-UI components and Yandex Maps.
 
-In the project directory, you can run:
+## ⚙️ Environment Setup
 
-### `npm start`
+This project requires **Node.js v12.x** and **npm v6.x** to ensure compatibility with `react-scripts@3.4.1` and React 16.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ✅ Installing Node.js via `nvm` (Recommended)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. **Install nvm (Node Version Manager)**
+   Open a terminal and run:
 
-### `npm test`
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+   ```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Load **\`\`** into your current shell session** (for zsh users):
 
-### `npm run build`
+   ```bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+   [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+   ```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   > **Tip:** Add the above lines to your `~/.zshrc` file to enable `nvm` automatically in every terminal session.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. **Install and use Node.js v12:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   nvm install 12
+   nvm use 12
+   ```
 
-### `npm run eject`
+4. **Verify your Node.js and npm versions:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   node -v   # should be v12.x.x
+   npm -v    # should be 6.x.x
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📦 Installing Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+After setting up Node.js and npm:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+## 🚀 Running the App
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start the development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
 
-### Code Splitting
+The app will be available at `http://localhost:3000`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## 🛠️ Building for Production
 
-### Analyzing the Bundle Size
+To create an optimized production build:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```bash
+npm run build
+```
 
-### Making a Progressive Web App
+The build output will be in the `build/` folder.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+---
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For any issues or questions, feel free to open an issue or contribute!
